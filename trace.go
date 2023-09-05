@@ -82,6 +82,12 @@ func trace(tracee string, argv []string) (int, error) {
 	if withSeccomp {
 		argv = append([]string{"-seccomp"}, argv...)
 	}
+	if !*flUndelete {
+		argv = append([]string{"-exclude-seccomp-unlink"}, argv...)
+	}
+	if *flDeps == "" {
+		argv = append([]string{"-exclude-seccomp-read-write"}, argv...)
+	}
 	cmd := exec.Command(tracee, argv...) //#nosec
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout

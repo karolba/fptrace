@@ -35,6 +35,7 @@ var wstatusText = map[int]string{
 
 var (
 	flEnv      = flag.Bool("e", false, "record environment variables")
+	flDeps     = flag.String("d", "", "deps output `file`")
 	flUndelete = flag.Bool("u", false, "undelete files")
 )
 
@@ -45,7 +46,6 @@ var vercmp = collate.New(language.English, collate.Numeric)
 func main() {
 	flTrace := flag.String("t", "/dev/null", "trace output `file`")
 	flTracee := flag.String("tracee", tracee, "tracee `command`")
-	flDeps := flag.String("d", "", "deps output `file`")
 	flDepsWithOutput := flag.Bool("do", false, "output deps with outputs")
 	flDepsWithExec := StringSliceSetFlag("dn", "output deps of `command`(s)")
 	flScripts := flag.String("s", "", "scripts output `dir`")
