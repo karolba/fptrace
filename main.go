@@ -58,6 +58,11 @@ func main() {
 	oldSeccomp = vercmp.CompareString(*flKernel, "4.8") < 0
 
 	args := flag.Args()
+	if len(args) == 0 {
+		flag.Usage()
+		os.Exit(1)
+	}
+
 	runtime.LockOSThread()
 	tracee, err := lookBesideExecutable(*flTracee)
 	if err != nil {
